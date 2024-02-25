@@ -114,6 +114,10 @@ do_install() {
 
   SODIUM_INSTALL=system pip install pynacl
 
+  echo "cython<3.0" >> c.txt
+  PIP_CONSTRAINT=c.txt pip install pyyaml==6.0
+  
+
   RUSTFLAGS="-C lto=n" CARGO_BUILD_TARGET="$(rustc -Vv | grep "host" | awk '{print $2}')"  CRYPTOGRAPHY_DONT_BUILD_RUST=1 pip install homeassistant==2023.4.4
 
 }
